@@ -160,12 +160,33 @@ const MatchConsole = () => {
     ];
 
     useEffect(() => {
-        // Simulate API call
-        setTimeout(() => {
-            setCreators(mockBackendResponse);
-            setLoading(false);
-        }, 1000);
-    }, []);
+        const fetchCall = async () => {
+            try {
+                const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/brand/match`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(brandBrief),
+                });
+
+                const data = await response.json(); // await here
+                console.log("after fetching in Match console: ", data);
+
+                setCreators(data.results);
+            } catch (error) {
+                console.error("Error fetching creators:", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        if (brandBrief) {
+            setLoading(true);
+            fetchCall();
+        }
+    }, [brandBrief]);
+
 
     const handleCreatorSelection = (creatorId) => {
         const newSelected = new Set(selectedCreators);
@@ -189,10 +210,12 @@ const MatchConsole = () => {
         const selectedData = getSelectedCreatorsData();
         console.log('Selected creators for billing:', selectedData);
 
-        navigate("/billing", { state: { 
-            selectedCreators: selectedData,
-            brandBrief: brandBrief
-        } });
+        navigate("/billing", {
+            state: {
+                selectedCreators: selectedData,
+                brandBrief: brandBrief
+            }
+        });
     };
 
     const getScoreColor = (score) => {
@@ -305,8 +328,8 @@ const MatchConsole = () => {
                                 <div
                                     key={creator._id}
                                     className={`bg-black/40 backdrop-blur-sm rounded-2xl p-6 border transition-all duration-300 hover:shadow-2xl hover:shadow-green-500/10 ${isSelected
-                                            ? 'border-green-500/70 bg-green-900/10'
-                                            : 'border-green-800/30 hover:border-green-600/50'
+                                        ? 'border-green-500/70 bg-green-900/10'
+                                        : 'border-green-800/30 hover:border-green-600/50'
                                         }`}
                                 >
 
@@ -323,8 +346,8 @@ const MatchConsole = () => {
                                                             className="sr-only"
                                                         />
                                                         <div className={`w-6 h-6 rounded border-2 flex items-center justify-center transition-all duration-200 ${isSelected
-                                                                ? 'border-green-500 bg-green-500'
-                                                                : 'border-gray-500 hover:border-green-400'
+                                                            ? 'border-green-500 bg-green-500'
+                                                            : 'border-gray-500 hover:border-green-400'
                                                             }`}>
                                                             {isSelected && (
                                                                 <svg className="w-4 h-4 text-black" fill="currentColor" viewBox="0 0 20 20">

@@ -96,8 +96,19 @@ const BrandBrief = () => {
     });
   };
 
-  const handleMatchConsole = () => {
-    console.log("formData in brandbrief: ", formData);
+  const handleMatchConsole = async () => {
+    const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/brand/brand-brief`, {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    });
+
+    const data = response.json();
+
+    console.log("Backedn response: ", data);
+
     navigate("/match-console", { state: { brandBrief: formData } })
   }
 

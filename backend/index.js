@@ -3,11 +3,18 @@ import dotenv from "dotenv";
 import { connectDB } from "./connection.js";
 import brandRouter from "./router/brandRouter.js";
 import creatorRouter from "./router/creatorRouter.js";
+import cors from "cors";
 
 dotenv.config();
 
 const app = express();
 app.use(express.json());
+
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+}));
 
 const PORT = process.env.PORT || 5000;
 
