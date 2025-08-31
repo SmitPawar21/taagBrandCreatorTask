@@ -142,8 +142,7 @@ export const matchBrandWithCreators = async (req, res) => {
       totalScore = relevanceScore + audienceFitScore + performanceScore + constraintScore;
 
       return {
-        creatorId: creator._id,
-        handle: creator.handle,
+        creator,
         totalScore,
         reasons,
       };
