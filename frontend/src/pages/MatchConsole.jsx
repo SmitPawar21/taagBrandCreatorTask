@@ -170,7 +170,7 @@ const MatchConsole = () => {
                     body: JSON.stringify(brandBrief),
                 });
 
-                const data = await response.json(); // await here
+                const data = await response.json();
                 console.log("after fetching in Match console: ", data);
 
                 setCreators(data.results);
@@ -439,7 +439,7 @@ const MatchConsole = () => {
                                                     className="text-4xl font-bold mb-1"
                                                     style={{ color: getScoreColor(totalScore) }}
                                                 >
-                                                    {totalScore}
+                                                    {Number(totalScore).toFixed(2)} 
                                                 </div>
                                                 <div className="text-sm text-gray-400 mb-4">
                                                     {getScoreGrade(totalScore)} Match

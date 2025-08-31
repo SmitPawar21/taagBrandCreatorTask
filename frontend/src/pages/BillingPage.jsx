@@ -57,8 +57,7 @@ const BillingPage = () => {
     }
     const handlePrev = () => setStep(step - 1);
 
-    const handleBrandBill = async (e) => {
-        e.preventDefault();
+    const handleBrandBill = async () => {
         try {
             const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/billing/brand`, {
                 method: "POST",
@@ -71,8 +70,7 @@ const BillingPage = () => {
         }
     };
 
-    const handleCreatorBill = async (e) => {
-        e.preventDefault();
+    const handleCreatorBill = async () => {
         try {
             const amount = creatorForm.reduce((sum, c) => sum + Number(c.basePrice), 0);
 

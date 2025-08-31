@@ -21,9 +21,9 @@ const PORT = process.env.PORT || 5000;
 
 connectDB();
 
-app.use("/brand", brandRouter);
-app.use("/creator", creatorRouter);
-app.use("/billing", billingRouter);
+app.use("/api/brand", brandRouter);
+app.use("/api/creator", creatorRouter);
+app.use("/api/billing", billingRouter);
 
 app.get("/", (req, res) => {
     res.status(201).json({message: "Hello Smit"});
