@@ -36,7 +36,6 @@ const BillingPage = () => {
 
     const [errors, setErrors] = useState({});
 
-    // Validation functions
     const validateGSTIN = (gstin) => {
         const gstinRegex = /^[0-9]{2}[A-Z]{5}[0-9]{4}[A-Z]{1}[1-9A-Z]{1}Z[0-9A-Z]{1}$/;
         return gstinRegex.test(gstin);
@@ -71,7 +70,6 @@ const BillingPage = () => {
         const { name, value } = e.target;
         setBrandBilling({ ...brandBilling, [name]: value });
         
-        // Clear error when user starts typing
         if (errors[name]) {
             setErrors({ ...errors, [name]: '' });
         }
@@ -83,7 +81,6 @@ const BillingPage = () => {
         updated[index][name] = value;
         setCreatorPayouts(updated);
         
-        // Clear error when user starts typing
         const errorKey = `creator_${index}_${name}`;
         if (errors[errorKey]) {
             setErrors({ ...errors, [errorKey]: '' });
@@ -93,7 +90,6 @@ const BillingPage = () => {
     const validateBrandForm = () => {
         const newErrors = {};
         
-        // Required field validation
         if (!brandBilling.company.trim()) {
             newErrors.company = 'Company name is required';
         }
@@ -124,7 +120,6 @@ const BillingPage = () => {
             newErrors.paymentMethod = 'Please select a payment method';
         }
         
-        // Optional GSTIN validation - only validate if provided
         if (brandBilling.GSTIN.trim() && !validateGSTIN(brandBilling.GSTIN)) {
             newErrors.GSTIN = 'Please enter a valid GSTIN (e.g., 22AAAAA0000A1Z5)';
         }
@@ -174,12 +169,12 @@ const BillingPage = () => {
     const handleNext = async () => {
         if (step === 1) {
             if (!validateBrandForm()) {
-                return; // Stop if validation fails
+                return; 
             }
             await handleBrandBill();
         } else if (step === 2) {
             if (!validateCreatorForm()) {
-                return; // Stop if validation fails
+                return; 
             }
             await handleCreatorBill();
         }
@@ -227,9 +222,9 @@ const BillingPage = () => {
         const doc = new jsPDF();
         
         // Set colors
-        const primaryColor = [197, 243, 125]; // #C5F37D
-        const darkColor = [1, 64, 47]; // #01402F
-        const textColor = [0, 0, 0]; // Black
+        const primaryColor = [197, 243, 125]; 
+        const darkColor = [1, 64, 47];
+        const textColor = [0, 0, 0]; 
         
         // Header
         doc.setFillColor(primaryColor[0], primaryColor[1], primaryColor[2]);
