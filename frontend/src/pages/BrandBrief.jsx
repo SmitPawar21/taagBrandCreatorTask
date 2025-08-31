@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const BrandBrief = () => {
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     name: '',
     category: '',
@@ -76,25 +79,6 @@ const BrandBrief = () => {
     }));
   };
 
-  const generateJson = () => {
-    const jsonOutput = {
-      _id: `b${Math.floor(Math.random() * 1000)}`,
-      name: formData.name,
-      category: formData.category,
-      budgetINR: parseInt(formData.budgetINR),
-      targetLocations: formData.targetLocations,
-      targetAges: formData.targetAges,
-      goals: formData.goals,
-      tone: formData.tone,
-      platforms: formData.platforms,
-      constraints: {
-        noAdultContent: formData.constraints.noAdultContent,
-        timelineDays: formData.constraints.timelineDays
-      }
-    };
-    setGeneratedJson(jsonOutput);
-  };
-
   const resetForm = () => {
     setFormData({
       name: '',
@@ -110,8 +94,12 @@ const BrandBrief = () => {
         timelineDays: 21
       }
     });
-    setGeneratedJson(null);
   };
+
+  const handleMatchConsole = () => {
+    console.log("formData in brandbrief: ", formData);
+    navigate("/match-console", { state: { brandBrief: formData } })
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-green-900 to-black text-white">
@@ -364,12 +352,12 @@ const BrandBrief = () => {
             {/* Action Buttons */}
             <div className="flex gap-4 mb-8">
               <button
-                onClick={generateJson}
+                onClick={handleMatchConsole}
                 className="px-8 py-3 font-semibold rounded-lg transition-all duration-200 transform hover:scale-105"
                 style={{backgroundColor: '#C5F37D', color: '#001719'}}
                 disabled={!formData.name || !formData.category || !formData.budgetINR}
               >
-                Generate JSON
+                Redirect To Match Console
               </button>
               <button
                 onClick={resetForm}
@@ -378,26 +366,6 @@ const BrandBrief = () => {
                 Reset Form
               </button>
             </div>
-
-            {/* Generated JSON Output */}
-            {generatedJson && (
-              <div className="mt-8">
-                <h3 className="text-2xl font-semibold mb-4" style={{color: '#C5F37D'}}>
-                  Generated JSON
-                </h3>
-                <div className="bg-gray-900/80 border border-green-700/50 rounded-lg p-6 overflow-x-auto">
-                  <pre className="text-green-300 text-sm font-mono whitespace-pre-wrap">
-                    {JSON.stringify(generatedJson, null, 2)}
-                  </pre>
-                </div>
-                <button
-                  onClick={() => navigator.clipboard.writeText(JSON.stringify(generatedJson, null, 2))}
-                  className="mt-4 px-6 py-2 bg-green-700 text-white font-medium rounded-lg hover:bg-green-600 transition-all duration-200"
-                >
-                  Copy to Clipboard
-                </button>
-              </div>
-            )}
           </div>
         </div>
 
