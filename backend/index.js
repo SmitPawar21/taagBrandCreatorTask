@@ -3,6 +3,7 @@ import dotenv from "dotenv";
 import { connectDB } from "./connection.js";
 import brandRouter from "./router/brandRouter.js";
 import creatorRouter from "./router/creatorRouter.js";
+import billingRouter from "./router/billingRouter.js";
 import cors from "cors";
 
 dotenv.config();
@@ -22,6 +23,7 @@ connectDB();
 
 app.use("/brand", brandRouter);
 app.use("/creator", creatorRouter);
+app.use("/billing", billingRouter);
 
 app.get("/", (req, res) => {
     res.status(201).json({message: "Hello Smit"});

@@ -15,7 +15,7 @@ const BillingPage = () => {
         email: "",
         phone: "",
         budget: brandBrief.budgetINR || "",
-        paymentMethod: "UPI", 
+        paymentMethod: "UPI",
     });
 
     console.log("BrandBilling: ", brandBilling);
@@ -45,8 +45,47 @@ const BillingPage = () => {
         setCreatorPayouts(updated);
     };
 
-    const handleNext = () => setStep(step + 1);
+    const handleNext = async () => {
+        if(step === 1) {
+            await handleBrandBill();
+        }
+
+        else if(step === 2) {
+            await handleCreatorBill();
+        }
+        setStep(step + 1);
+    }
     const handlePrev = () => setStep(step - 1);
+
+    const handleBrandBill = async (e) => {
+        e.preventDefault();
+        try {
+            const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/billing/brand`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(brandForm),
+            });
+            const data = await res.json();
+        } catch (err) {
+            console.error("Brand billing error:", err);
+        }
+    };
+
+    const handleCreatorBill = async (e) => {
+        e.preventDefault();
+        try {
+            const amount = creatorForm.reduce((sum, c) => sum + Number(c.basePrice), 0);
+
+            const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/billing/creator`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ amount, description: "Creator payout summary" }),
+            });
+            const data = await res.json();
+        } catch (err) {
+            console.error("Creator billing error:", err);
+        }
+    };
 
     const calculateGST = () => {
         const budget = parseFloat(brandBilling.budget || 0);
