@@ -5,7 +5,6 @@ const MatchConsole = () => {
   const [loading, setLoading] = useState(true);
   const [selectedCreator, setSelectedCreator] = useState(null);
 
-  // Mock backend data with new structure - in real implementation, this would be an API call
   const mockBackendResponse = [
     {
       "creator": {
@@ -222,7 +221,6 @@ const MatchConsole = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-green-900 to-black text-white">
       <div className="container mx-auto px-6 py-12">
-        {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold mb-4" style={{ color: '#C5F37D' }}>
             Creator Matches
@@ -237,7 +235,6 @@ const MatchConsole = () => {
           </div>
         </div>
 
-        {/* Creator List */}
         <div className="max-w-6xl mx-auto">
           <div className="grid gap-6">
             {creators.map((item, index) => {
@@ -247,12 +244,10 @@ const MatchConsole = () => {
                   key={creator._id}
                   className="bg-black/40 backdrop-blur-sm rounded-2xl p-6 border border-green-800/30 hover:border-green-600/50 transition-all duration-300 hover:shadow-2xl hover:shadow-green-500/10"
                 >
-                  {/* Main Creator Card */}
+
                   <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between">
-                    {/* Left Section - Creator Info */}
                     <div className="flex-1">
                       <div className="flex items-start mb-4">
-                        {/* Rank Badge */}
                         <div className="flex-shrink-0 mr-4">
                           <div 
                             className="w-12 h-12 rounded-full flex items-center justify-center text-black font-bold text-lg mr-4"
@@ -262,16 +257,6 @@ const MatchConsole = () => {
                           </div>
                         </div>
 
-                        {/* Avatar */}
-                        {/* <div className="flex-shrink-0 mr-4">
-                          <img
-                            src={`https://ui-avatars.com/api/?name=${creator.handle.substring(1)}&background=057B51&color=fff&size=64`}
-                            alt={creator.handle}
-                            className="w-16 h-16 rounded-full border-2 border-green-700"
-                          />
-                        </div> */}
-
-                        {/* Creator Details */}
                         <div className="flex-1">
                           <div className="flex items-center gap-3 mb-2">
                             <h3 className="text-2xl font-bold text-white">
@@ -285,8 +270,7 @@ const MatchConsole = () => {
                               )}
                             </div>
                           </div>
-                          
-                          {/* Platforms */}
+
                           <div className="flex flex-wrap gap-2 mb-3">
                             {creator.platforms.map(platform => (
                               <div key={platform} className="flex items-center gap-1 px-3 py-1 bg-gray-800/60 rounded-full text-sm">
@@ -296,7 +280,6 @@ const MatchConsole = () => {
                             ))}
                           </div>
 
-                          {/* Verticals & Tone */}
                           <div className="flex flex-wrap gap-2 mb-3">
                             {creator.verticals.map(vertical => (
                               <div key={vertical} className="px-3 py-1 rounded-full text-xs font-medium" style={{backgroundColor: '#01402F', color: '#C5F37D'}}>
@@ -310,7 +293,6 @@ const MatchConsole = () => {
                             ))}
                           </div>
 
-                          {/* Key Metrics */}
                           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
                             <div className="text-center p-3 bg-black/30 rounded-lg">
                               <div className="text-lg font-bold" style={{color: '#C5F37D'}}>
@@ -341,7 +323,6 @@ const MatchConsole = () => {
                       </div>
                     </div>
 
-                    {/* Right Section - Score */}
                     <div className="flex-shrink-0 lg:ml-6">
                       <div className="text-center lg:text-right">
                         <div 
@@ -364,7 +345,6 @@ const MatchConsole = () => {
                     </div>
                   </div>
 
-                  {/* Expandable Details Section */}
                   {selectedCreator === creator._id && (
                     <div className="mt-8 pt-6 border-t border-green-800/30 animate-fade-in">
                       <div className="grid lg:grid-cols-2 gap-8">
@@ -391,13 +371,11 @@ const MatchConsole = () => {
                           </div>
                         </div>
 
-                        {/* Audience Demographics */}
                         <div>
                           <h4 className="text-lg font-semibold mb-4" style={{color: '#C5F37D'}}>
                             Audience Demographics
                           </h4>
-                          
-                          {/* Geographic Distribution */}
+
                           <div className="mb-6">
                             <h5 className="text-sm font-medium text-gray-300 mb-3">Geographic Distribution</h5>
                             <div className="space-y-2">
@@ -423,7 +401,6 @@ const MatchConsole = () => {
                             </div>
                           </div>
 
-                          {/* Age Distribution */}
                           <div>
                             <h5 className="text-sm font-medium text-gray-300 mb-3">Age Distribution</h5>
                             <div className="space-y-2">
@@ -469,7 +446,6 @@ const MatchConsole = () => {
             })}
           </div>
 
-          {/* Empty State */}
           {creators.length === 0 && !loading && (
             <div className="text-center py-16">
               <div className="mb-6">
@@ -492,7 +468,6 @@ const MatchConsole = () => {
           )}
         </div>
 
-        {/* Footer */}
         <div className="text-center mt-12">
           <p className="text-gray-400">
             Data-led influencer matching • Measurable results through creative excellence
