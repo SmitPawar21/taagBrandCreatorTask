@@ -271,7 +271,6 @@ const MatchConsole = () => {
                     </div>
                 </div>
 
-                {/* Selection Summary */}
                 {selectedCreators.size > 0 && (
                     <div className="max-w-6xl mx-auto mb-8">
                         <div className="bg-green-900/20 border border-green-700/50 rounded-2xl p-6">
@@ -514,7 +513,6 @@ const MatchConsole = () => {
                                                         </div>
                                                     </div>
 
-                                                    {/* Past Brand Categories */}
                                                     <div className="mt-6">
                                                         <h5 className="text-sm font-medium text-gray-300 mb-3">Past Brand Categories</h5>
                                                         <div className="flex flex-wrap gap-2">

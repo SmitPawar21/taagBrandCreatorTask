@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const BillingPage = () => {
+    const navigate = useNavigate();
     const location = useLocation();
     const [step, setStep] = useState(1);
     const selectedCreators = location.state?.selectedCreators || [];
     const brandBrief = location.state?.brandBrief || [];
 
-    // Brand Billing State
     const [brandBilling, setBrandBilling] = useState({
         company: brandBrief.name || "",
         GSTIN: "",
@@ -20,7 +20,6 @@ const BillingPage = () => {
 
     console.log("BrandBilling: ", brandBilling);
 
-    // Creator Payout State -> one object per creator
     const [creatorPayouts, setCreatorPayouts] = useState(
         selectedCreators.map((creator) => ({
             name: creator.creator.handle || "",
@@ -61,7 +60,6 @@ const BillingPage = () => {
         <div className="bg-[#000000] text-gray-200 min-h-screen p-4 sm:p-8 flex justify-center items-center">
             <div className="w-full max-w-3xl mx-auto p-6 sm:p-8 bg-[#001719] border border-[#01402F] rounded-2xl">
 
-                {/* Stepper */}
                 <div className="relative flex justify-between mb-8">
                     <div className="absolute top-1/2 left-0 w-full h-0.5 bg-[#01402F] -translate-y-1/2"></div>
                     <div
@@ -83,7 +81,6 @@ const BillingPage = () => {
                     ))}
                 </div>
 
-                {/* Step 1 - Brand Billing */}
                 {step === 1 && (
                     <div>
                         <h2 className="text-2xl font-semibold mb-6 text-white">Brand Billing Details</h2>
@@ -107,7 +104,6 @@ const BillingPage = () => {
                                 </div>
                             ))}
 
-                            {/* Payment Method Select */}
                             <div>
                                 <select
                                     name="paymentMethod"
@@ -146,7 +142,6 @@ const BillingPage = () => {
                     </div>
                 )}
 
-                {/* Step 2 - Multiple Creator Payouts */}
                 {step === 2 && (
                     <div>
                         <h2 className="text-2xl font-semibold mb-1 text-white">Creator Payout Details</h2>
@@ -201,12 +196,11 @@ const BillingPage = () => {
                     </div>
                 )}
 
-                {/* Step 3 - Summary */}
                 {step === 3 && (
                     <div>
                         <h2 className="text-2xl font-semibold mb-6 text-white">Summary</h2>
                         <div className="bg-[#01402F] p-6 rounded-lg space-y-6">
-                            {/* Brand */}
+
                             <div>
                                 <h3 className="text-lg font-bold text-[#C5F37D] mb-2">Brand Billing</h3>
                                 <div className="text-sm grid grid-cols-2 gap-x-4 gap-y-1">
@@ -217,7 +211,7 @@ const BillingPage = () => {
                                 </div>
                             </div>
                             <hr className="border-gray-700" />
-                            {/* Creators */}
+
                             <div>
                                 <h3 className="text-lg font-bold text-[#C5F37D] mb-2">Creator Payouts</h3>
                                 {creatorPayouts.map((payout, i) => (
@@ -243,6 +237,12 @@ const BillingPage = () => {
                                 className="bg-[#C5F37D] text-black font-bold px-6 py-3 rounded-lg hover:bg-opacity-90 transition-colors"
                             >
                                 Save / Print
+                            </button>
+                            <button
+                                onClick={() => navigate("/")}
+                                className="bg-[#C5F37D] text-black font-bold px-6 py-3 rounded-lg hover:bg-opacity-90 transition-colors"
+                            >
+                                Go Home
                             </button>
                         </div>
                     </div>

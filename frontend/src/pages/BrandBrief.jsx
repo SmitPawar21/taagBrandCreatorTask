@@ -104,7 +104,6 @@ const BrandBrief = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-green-900 to-black text-white">
       <div className="container mx-auto px-6 py-12">
-        {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-5xl font-bold mb-4" style={{color: '#C5F37D'}}>
             Brand Brief Form
@@ -116,8 +115,7 @@ const BrandBrief = () => {
 
         <div className="max-w-4xl mx-auto">
           <div className="bg-black/40 backdrop-blur-sm rounded-2xl p-8 border border-green-800/30">
-            
-            {/* Basic Information */}
+
             <div className="mb-8">
               <h3 className="text-2xl font-semibold mb-6" style={{color: '#C5F37D'}}>
                 Basic Information
@@ -180,7 +178,6 @@ const BrandBrief = () => {
               </div>
             </div>
 
-            {/* Target Audience */}
             <div className="mb-8">
               <h3 className="text-2xl font-semibold mb-6" style={{color: '#C5F37D'}}>
                 Target Audience
@@ -242,7 +239,6 @@ const BrandBrief = () => {
               </div>
             </div>
 
-            {/* Campaign Goals */}
             <div className="mb-8">
               <h3 className="text-2xl font-semibold mb-6" style={{color: '#C5F37D'}}>
                 Campaign Goals
@@ -268,7 +264,6 @@ const BrandBrief = () => {
               </div>
             </div>
 
-            {/* Brand Tone */}
             <div className="mb-8">
               <h3 className="text-2xl font-semibold mb-6" style={{color: '#C5F37D'}}>
                 Brand Tone
@@ -294,7 +289,6 @@ const BrandBrief = () => {
               </div>
             </div>
 
-            {/* Platforms */}
             <div className="mb-8">
               <h3 className="text-2xl font-semibold mb-6" style={{color: '#C5F37D'}}>
                 Platforms
@@ -320,7 +314,6 @@ const BrandBrief = () => {
               </div>
             </div>
 
-            {/* Constraints */}
             <div className="mb-8">
               <h3 className="text-2xl font-semibold mb-6" style={{color: '#C5F37D'}}>
                 Constraints
@@ -349,7 +342,6 @@ const BrandBrief = () => {
               </div>
             </div>
 
-            {/* Action Buttons */}
             <div className="flex gap-4 mb-8">
               <button
                 onClick={handleMatchConsole}
@@ -369,7 +361,6 @@ const BrandBrief = () => {
           </div>
         </div>
 
-        {/* Footer */}
         <div className="text-center mt-12">
           <p className="text-gray-400">
             Merging Tech, Agencies & Artists Globally

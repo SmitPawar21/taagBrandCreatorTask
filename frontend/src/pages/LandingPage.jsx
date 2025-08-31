@@ -1,4 +1,3 @@
-import React from 'react';
 import {useNavigate} from 'react-router-dom'
 
 const LandingPage = () => {
@@ -11,7 +10,6 @@ const LandingPage = () => {
 
   return (
     <div className="h-screen w-full flex items-center justify-center bg-black relative overflow-hidden">
-      {/* Blurred gradient background */}
       <div className="absolute inset-0">
         <div className="absolute w-[600px] h-[600px] bg-[#057B51] rounded-full blur-3xl opacity-50 top-[-100px] left-[-100px]"></div>
         <div className="absolute w-[500px] h-[500px] bg-[#01402F] rounded-full blur-3xl opacity-40 bottom-[-150px] right-[-150px]"></div>
@@ -19,7 +17,6 @@ const LandingPage = () => {
         <div className="absolute w-[300px] h-[300px] bg-[#C5F37D] rounded-full blur-3xl opacity-30 bottom-[100px] left-[250px]"></div>
       </div>
 
-      {/* Content */}
       <div className="relative z-10 text-center px-6">
         <h1 className="text-8xl font-bold text-white drop-shadow-md mb-10">
           Taag.one
